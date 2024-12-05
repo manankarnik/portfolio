@@ -1,5 +1,6 @@
 <section class="container mx-auto p-4 lg:p-8">
-	<div class="flex h-[80vh] flex-col items-center justify-center gap-4">
+	<h1 class="font-head font-head text-4xl font-extrabold text-primary xl:text-6xl"># Home</h1>
+	<div class="my-8 flex h-[60vh] flex-col items-center justify-center gap-4">
 		<div class="w-100">
 			<div class="flex gap-3 text-[3px] leading-none sm:text-[5px] lg:text-[8px]">
 				<pre>
