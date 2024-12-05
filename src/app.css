@@ -1,5 +1,17 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@layer base {
+	html {
+		background: light-dark(theme("colors.zinc.100"), theme("colors.zinc.900"));
+		color: light-dark(theme("colors.zinc.800"), theme("colors.zinc.200"));
+		font-family: theme("fontFamily.body");
+	}
+	:root {
+		--background: light-dark(theme("colors.zinc.100"), theme("colors.zinc.900"));
+		--foreground: light-dark(theme("colors.zinc.900"), theme("colors.zinc.100"));
+		--muted: light-dark(theme("colors.zinc.600"), theme("colors.zinc.500"));
+		--primary: light-dark(theme("colors.violet.600"), theme("colors.violet.500"));
+	}
+}

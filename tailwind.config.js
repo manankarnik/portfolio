@@ -1,15 +1,18 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
 export default {
 	content: ["./src/**/*.{html,js,svelte,ts}"],
-
+	darkMode: "class",
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["Fira Mono"]
+				head: ["Source Code Pro"],
+				body: ["Poppins"]
 			},
 			colors: {
-				primary: colors.violet[500]
+				primary: "var(--primary)",
+				foreground: "var(--foreground)",
+				background: "var(--background)",
+				muted: "var(--muted)"
 			}
 		}
 	},
