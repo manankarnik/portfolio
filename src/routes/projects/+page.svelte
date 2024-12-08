@@ -95,7 +95,7 @@
 	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Projects</h1>
 	<div class="my-8 grid gap-4 xl:grid-cols-2 xl:gap-8">
 		{#each projects as project}
-			<div class="w-full rounded-lg bg-midground p-2 shadow-lg sm:p-4 lg:p-8">
+			<div class="w-full rounded-lg bg-midground p-4 shadow-lg lg:p-8">
 				<div class="flex h-full flex-col justify-between">
 					<div>
 						<h2 class="font-head text-2xl font-extrabold text-primary xl:text-4xl">
@@ -115,11 +115,11 @@
 							{/each}
 						</ul>
 					</div>
-					<div class="flex gap-2 text-nowrap sm:gap-4 lg:gap-6">
+					<div class="flex flex-col gap-2 text-nowrap sm:flex-row sm:gap-4">
 						{#each project.buttons as button}
 							<button
 								on:click={() => (window.location = button.href)}
-								class="w-full rounded-lg bg-primary p-4 font-semibold text-zinc-200"
+								class="block w-full rounded-lg bg-primary py-4 font-semibold text-zinc-200 sm:my-0"
 							>
 								&lang; {button.text} &rang;
 							</button>

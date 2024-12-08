@@ -2,7 +2,7 @@
 	import { goto } from "$app/navigation";
 	import { page } from "$app/stores";
 	import { browser } from "$app/environment";
-	import { Menu } from "lucide-svelte";
+	import { Menu, CircleX } from "lucide-svelte";
 	import DarkModeToggle from "$lib/components/dark-mode-toggle.svelte";
 	let links = [
 		{ href: "/about", text: "About Me", hovered: false },
@@ -46,7 +46,7 @@
 			{/each}
 		</div>
 		<div class="flex items-center justify-center gap-2">
-			<DarkModeToggle />
+			<DarkModeToggle class="hidden sm:block" />
 			<button on:click={() => (open = true)}>
 				<Menu class="block lg:hidden" />
 			</button>
@@ -61,18 +61,24 @@
 	></div>
 {/if}
 <div
-	class={`fixed bottom-0 right-0 top-0 w-80 bg-background p-4 transition-transform duration-100 ${
+	class={`fixed bottom-0 right-0 top-0 w-80 bg-background p-4 font-head transition-transform duration-100 ${
 		open ? "translate-x-0" : "translate-x-full"
 	}`}
 >
+	<div class="flex justify-end p-4">
+		<button on:click={(open = false)}>
+			<CircleX />
+		</button>
+	</div>
 	{#each links as link}
 		<a
-			class={"block p-4 font-bold" + ($page.url.pathname == link.href ? " text-primary" : "")}
+			class={"flex gap-2 p-4 font-bold" + ($page.url.pathname == link.href ? " text-primary" : "")}
 			href={link.href}
 			on:click={() => (open = false)}
 		>
-			[<span class:invisible={$page.url.pathname != link.href && !link.hovered}>■</span>]
-			{link.text}
+			<div>[<span class:invisible={$page.url.pathname != link.href && !link.hovered}>■</span>]</div>
+			<div>{link.text}</div>
 		</a>
 	{/each}
+	<DarkModeToggle onclick={() => (open = false)} class="w-full p-4 font-bold" label={true} />
 </div>

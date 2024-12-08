@@ -17,7 +17,7 @@
 			]
 		},
 		{
-			title: "Frontend Developer",
+			title: "Front-end Developer",
 			subtitle: "Kewisolutionary LLP",
 			points: [
 				"Contributed to the design and development of Kewisolutionary website, 2 including cards, carousels, the header and footer, hero sections, and tabs showcasing company technologies.",
@@ -31,7 +31,7 @@
 	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Work Experience</h1>
 	<div class="my-8 w-full">
 		{#each works as work}
-			<div class="my-8 w-full rounded-lg bg-midground p-2 shadow-lg sm:p-4 lg:p-8">
+			<div class="my-8 w-full rounded-lg bg-midground p-4 shadow-lg lg:p-8">
 				<div class="flex h-full flex-col justify-between">
 					<div>
 						<h2 class="font-head text-2xl font-extrabold text-primary xl:text-4xl">
@@ -40,7 +40,7 @@
 						<h3 class="text-md font-head font-bold text-muted xl:text-xl">
 							### {work.subtitle}
 						</h3>
-						<ul class="my-4 list-['-_'] text-justify">
+						<ul class="mt-4 list-['-_'] text-justify">
 							{#each work.points as point}
 								<li class="ml-4 py-2 xl:text-xl">{point}</li>
 							{/each}
