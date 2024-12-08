@@ -1,6 +1,7 @@
 <script>
 	import { goto } from "$app/navigation";
 	import { page } from "$app/stores";
+	import { browser } from "$app/environment";
 	import { Menu } from "lucide-svelte";
 	import DarkModeToggle from "$lib/components/dark-mode-toggle.svelte";
 	let links = [
@@ -10,9 +11,19 @@
 		{ href: "/contact", text: "Contact", hovered: false }
 	];
 	let open = false;
+
+	if (browser) {
+		window.addEventListener("scroll", () => {
+			if (window.scrollY > 0) {
+				document.getElementById("header").classList.add("border-b", "border-muted");
+			} else {
+				document.getElementById("header").classList.remove("border-b", "border-muted");
+			}
+		});
+	}
 </script>
 
-<header class="sticky top-0 w-full font-head backdrop-blur">
+<header id="header" class="sticky top-0 w-full bg-background font-head">
 	<div
 		class="container mx-auto flex items-center justify-between gap-8 text-nowrap px-4 py-8 xl:gap-16 xl:px-8"
 	>
