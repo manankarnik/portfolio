@@ -2,11 +2,12 @@
 	import { goto } from "$app/navigation";
 	import bevyGenerative from "$lib/assets/bevy-generative.png";
 	import procedra from "$lib/assets/procedra.png";
+	import kanbanxt from "$lib/assets/kanbanxt.png";
 	import votingApp from "$lib/assets/voting-app.png";
 	import ssg from "$lib/assets/ssg.png";
 	import solarSystem from "$lib/assets/solar-system.png";
 
-	let projects = [
+	const projects = [
 		{
 			title: "Bevy Generative",
 			subtitle: "A Plugin for Procedural Generation",
@@ -16,7 +17,8 @@
 				"Utilizes various noise algorithms such as Perlin and Simplex noise to generate assets variations, offering a highly customizable approach with several tweakable parameters for factors like seed, scale, and offset."
 			],
 			buttons: [
-				{ text: "Github", href: "https://github.com/manankarnik/bevy-generative" },
+				{ text: "Github", href: "https://github.com/manankarnik/bevy_generative" },
+				{ text: "Crates.io", href: "https://crates.io/crates/bevy_generative" },
 				{ text: "Bevy Assets", href: "https://bevyengine.org/assets/#asset-generation" }
 			]
 		},
@@ -25,8 +27,8 @@
 			subtitle: "Procedural Assets in Real-Time",
 			src: procedra,
 			points: [
-				"A web-based asset generation platform with cross platform generation utilities that generate maps, textures, terrains, and planets on the fly.",
-				"Allows generation, storage, editing, cloning, and exporting of generated assets."
+				"A web-based asset generation platform that leverages Bevy Generative to enable real-time generation of assets like textures, maps, terrain, and planets directly in the browser.",
+				"Offers comprehensive asset management features, including asset generation, the ability to store assets as private or public, liking and cloning public assets, as well as editing and exporting them."
 			],
 			buttons: [
 				{ text: "Github", href: "https://github.com/manankarnik/procedra" },
@@ -38,12 +40,25 @@
 			]
 		},
 		{
+			title: "Kanbanxt",
+			src: kanbanxt,
+			subtitle: "A Kanban Board",
+			points: [
+				"A Kanban board web application that allows users to create and manage tasks through cards and containers for efficient task tracking.",
+				"Uses React Beautiful DnD to implement seamless drag-and-drop functionality, enabling users to reorder cards and move them between containers effortlessly."
+			],
+			buttons: [
+				{ text: "Github", href: "https://github.com/manankarnik/kanbanxt" },
+				{ text: "Live", href: "https://kanbanxt.netlify.app" }
+			]
+		},
+		{
 			title: "Static Site Generator",
 			subtitle: "Markdown File Parser",
 			src: ssg,
 			points: [
 				"Automates the creation of web pages, specifically blog posts, by parsing Markdown files and mapping them to dynamically generated routes.",
-				"Enables automatic metadata extraction (title, summary, date, and image) from Markdown files to streamline content management."
+				"Automatically extracts key metadata (such as title, summary, date, and image) from Markdown files and displays it on the blog post listing cards."
 			],
 			buttons: [
 				{ text: "Github", href: "https://github.com/manankarnik/static-site-generator" },
@@ -55,8 +70,8 @@
 			src: votingApp,
 			subtitle: "An App to Cast Your Vote",
 			points: [
-				"A secure voting application using Flutter, enabling users to authenticate via OTP validation and cast votes seamlessly.",
-				"Leverages Firebase for database management and user authentication, ensuring reliable data storage."
+				"A secure voting application that enables users to authenticate via OTP validation and cast votes seamlessly.",
+				"Leverages Firebase and Cloud Firestore for user authentication and database management, ensuring secure and reliable data storage."
 			],
 			buttons: [{ text: "Github", href: "https://github.com/manankarnik/e-voting-app" }]
 		},
@@ -65,7 +80,7 @@
 			src: solarSystem,
 			subtitle: "An Informational SPA Web App",
 			points: [
-				"A multi-route single-page application (SPA) featuring 3D models of the Sun and other planets, with detailed informational content on each page.",
+				"A multi-route single-page application (SPA) that provides in-depth, interactive content about the planets and the Sun in our solar system.",
 				"Utilizes @google/model-viewer for integrating interactive 3D models, enhancing user engagement and visualization."
 			],
 			buttons: [
@@ -77,10 +92,10 @@
 </script>
 
 <section class="container mx-auto min-h-[80vh] p-4 xl:p-8">
-	<h1 class="font-head font-head text-4xl font-extrabold text-primary xl:text-6xl"># Projects</h1>
+	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Projects</h1>
 	<div class="my-8 grid gap-4 xl:grid-cols-2 xl:gap-8">
 		{#each projects as project}
-			<div class="w-full rounded-lg border-2 border-muted p-2 hover:border-primary sm:p-4 lg:p-8">
+			<div class="w-full rounded-lg bg-midground p-2 shadow-lg sm:p-4 lg:p-8">
 				<div class="flex h-full flex-col justify-between">
 					<div>
 						<h2 class="font-head text-2xl font-extrabold text-primary xl:text-4xl">
