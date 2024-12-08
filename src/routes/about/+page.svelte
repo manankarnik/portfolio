@@ -3,7 +3,7 @@
 </script>
 
 <section class="container mx-auto min-h-[80vh] p-4 lg:p-8">
-	<h1 class="font-head font-head text-4xl font-extrabold text-primary xl:text-6xl"># About Me</h1>
+	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># About Me</h1>
 	<div class=" items-center justify-between lg:flex">
 		<div class="my-8 flex items-center justify-center lg:p-8">
 			<img class="w-80 rounded-full xl:w-[600px]" src={profile} alt="Profile Picture" />
