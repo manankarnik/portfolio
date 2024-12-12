@@ -12,7 +12,7 @@
 			title: "Bevy Generative",
 			subtitle: "A Plugin for Procedural Generation",
 			src: bevyGenerative,
-			points: [
+			highlights: [
 				"A plugin written for the bevy engine that facilitates real-time procedural generation of maps, textures, terrain, and planets.",
 				"Utilizes various noise algorithms such as Perlin and Simplex noise to generate assets variations, offering a highly customizable approach with several tweakable parameters for factors like seed, scale, and offset."
 			],
@@ -26,7 +26,7 @@
 			title: "Procedra",
 			subtitle: "Procedural Assets in Real-Time",
 			src: procedra,
-			points: [
+			highlights: [
 				"A web-based asset generation platform that leverages Bevy Generative to enable real-time generation of assets like textures, maps, terrain, and planets directly in the browser.",
 				"Offers comprehensive asset management features, including asset generation, the ability to store assets as private or public, liking and cloning public assets, as well as editing and exporting them."
 			],
@@ -43,7 +43,7 @@
 			title: "Kanbanxt",
 			src: kanbanxt,
 			subtitle: "A Kanban Board",
-			points: [
+			highlights: [
 				"A Kanban board web application that allows users to create and manage tasks through cards and containers for efficient task tracking.",
 				"Uses React Beautiful DnD to implement seamless drag-and-drop functionality, enabling users to reorder cards and move them between containers effortlessly."
 			],
@@ -56,7 +56,7 @@
 			title: "Static Site Generator",
 			subtitle: "Markdown File Parser",
 			src: ssg,
-			points: [
+			highlights: [
 				"Automates the creation of web pages, specifically blog posts, by parsing Markdown files and mapping them to dynamically generated routes.",
 				"Automatically extracts key metadata (such as title, summary, date, and image) from Markdown files and displays it on the blog post listing cards."
 			],
@@ -69,7 +69,7 @@
 			title: "Voting App",
 			src: votingApp,
 			subtitle: "An App to Cast Your Vote",
-			points: [
+			highlights: [
 				"A secure voting application that enables users to authenticate via OTP validation and cast votes seamlessly.",
 				"Leverages Firebase and Cloud Firestore for user authentication and database management, ensuring secure and reliable data storage."
 			],
@@ -79,7 +79,7 @@
 			title: "Solar System",
 			src: solarSystem,
 			subtitle: "An Informational SPA Web App",
-			points: [
+			highlights: [
 				"A multi-route single-page application (SPA) that provides in-depth, interactive content about the planets and the Sun in our solar system.",
 				"Utilizes @google/model-viewer for integrating interactive 3D models, enhancing user engagement and visualization."
 			],
@@ -91,7 +91,7 @@
 	];
 </script>
 
-<section class="container mx-auto min-h-[80vh] p-4 xl:p-8">
+<section class="container mx-auto min-h-[80vh] p-4 lg:p-8">
 	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Projects</h1>
 	<div class="my-8 grid gap-4 xl:grid-cols-2 xl:gap-8">
 		{#each projects as project}
@@ -110,7 +110,7 @@
 							alt={project.title}
 						/>
 						<ul class="my-4 list-['-_'] text-justify">
-							{#each project.points as point}
+							{#each project.highlights as point}
 								<li class="ml-4 py-2 xl:text-xl">{point}</li>
 							{/each}
 						</ul>

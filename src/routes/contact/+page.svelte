@@ -23,7 +23,7 @@
 	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Contact Me</h1>
 	<div class="my-8 h-full min-h-[60vh] items-center justify-center gap-8 xl:flex">
 		<h2
-			class="my-8 text-2xl font-extrabold text-primary sm:text-4xl xl:w-[800px] xl:text-5xl xl:!leading-relaxed"
+			class="my-8 text-2xl font-extrabold text-primary sm:text-3xl xl:w-[800px] xl:text-5xl xl:!leading-relaxed"
 		>
 			<div>Want to debug the mysteries of the universe?</div>
 			<div class="text-lg font-medium text-muted">Or just add to my unread emails?</div>

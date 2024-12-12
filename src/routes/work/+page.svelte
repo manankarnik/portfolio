@@ -3,31 +3,26 @@
 		{
 			title: "Software Developer",
 			subtitle: "Kewisolutionary LLP",
-			points: [
-				"Contributed to the development of two client-facing Android applications: MyMBMC and PayMyTV.",
-				"Responsible for collaboration with clients to gather requirements, design solutions, and implement features using Flutter, ensuring seamless integration with back-end systems developed in C#."
+			highlights: [
+				"Contributed to the development and successful launch of two client-facing Android applications, MyMBMC and PayMyTV, delivering high-quality user experiences tailored to client needs.",
+				"Designed and implemented application features using Flutter, ensuring efficient, responsive user interfaces and seamless integration with C# back-end systems.",
+				"Collaborated directly with clients to gather requirements, define project scope, and ensure solutions met business objectives."
 			]
 		},
 		{
 			title: "Software Developer",
 			subtitle: "Kewisolutionary LLP",
-			points: [
+			highlights: [
 				"Responsible for development of real-estate platform Manage Property with features such as interactive dashboard, service requests, inspection requests, email templates using technologies like VueJS and Vuetify.",
-				"Played an integral role in designing and developing the Manage Property website, 2 which featured components such as the hero section, header, footer, and FAQ section."
-			]
-		},
-		{
-			title: "Front-end Developer",
-			subtitle: "Kewisolutionary LLP",
-			points: [
-				"Contributed to the design and development of Kewisolutionary website, 2 including cards, carousels, the header and footer, hero sections, and tabs showcasing company technologies.",
+				"Played an integral role in designing and developing the Manage Property website, which featured components such as the hero section, header, footer, and FAQ section.",
+				"Contributed to the design and development of Kewisolutionary website, including cards, carousels, the header and footer, hero sections, and tabs showcasing company technologies.",
 				"Improved responsiveness of pages to ensure compatibility across various devices and developed engaging animations to enhance user experience and visual appeal."
 			]
 		}
 	];
 </script>
 
-<section class="container mx-auto min-h-[80vh] p-4 xl:p-8">
+<section class="container mx-auto min-h-[80vh] p-4 lg:p-8">
 	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Work Experience</h1>
 	<div class="my-8 w-full">
 		{#each works as work}
@@ -41,7 +36,7 @@
 							### {work.subtitle}
 						</h3>
 						<ul class="mt-4 list-['-_'] text-justify">
-							{#each work.points as point}
+							{#each work.highlights as point}
 								<li class="ml-4 py-2 xl:text-xl">{point}</li>
 							{/each}
 						</ul>
