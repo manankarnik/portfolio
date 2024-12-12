@@ -8,7 +8,7 @@
 		{ href: "/about", text: "About Me", hovered: false },
 		{ href: "/projects", text: "Projects", hovered: false },
 		{ href: "/work", text: "Work Experience", hovered: false },
-		{ href: "/contact", text: "Contact", hovered: false }
+		{ href: "/contact", text: "Contact Me", hovered: false }
 	];
 	let open = false;
 
