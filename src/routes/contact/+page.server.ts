@@ -3,15 +3,15 @@ import type { Actions } from "./$types";
 
 export const actions = {
 	default: async ({ request }) => {
-		const formData = await request.formData();
-		formData.append("accessKey", ACCESS_KEY);
+		const urlEncoded = new URLSearchParams(await request.formData());
+		urlEncoded.append("accessKey", ACCESS_KEY);
 		try {
-			await fetch("https://api.staticforms.xyz/submit", {
+			const response = await fetch("https://api.staticforms.xyz/submit", {
 				method: "POST",
 				headers: {
-					"Content-Type": "application/x-www-form-urlencoded"
+					"Content-Type": "application/x-www-url-formencoded"
 				},
-				body: formData.toString()
+				body: urlEncoded
 			});
 			return { success: true };
 		} catch (e) {

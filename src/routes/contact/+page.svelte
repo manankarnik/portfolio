@@ -1,5 +1,4 @@
 <script>
-	import { page } from "$app/stores";
 	import { onMount } from "svelte";
 	import { Mail, CircleX } from "lucide-svelte";
 	let url = $state("");
@@ -29,7 +28,6 @@
 			<div class="text-lg font-medium text-muted">Or just add to my unread emails?</div>
 		</h2>
 		<form method="post" class="w-full rounded-lg bg-midground p-4 shadow-lg lg:p-8">
-			<input type="hidden" name="accessKey" value={$page.data.ACCESS_KEY} />
 			<input type="hidden" name="subject" value="Portfolio Contact Form" />
 			<input type="hidden" name="redirectTo" value={url} />
 			<label for="name">
