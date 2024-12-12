@@ -16,6 +16,7 @@ export const actions = {
 			return { success: true };
 		} catch (e) {
 			console.log(e);
+			return { success: false };
 		}
 	}
 } satisfies Actions;

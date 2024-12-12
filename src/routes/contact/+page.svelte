@@ -1,19 +1,27 @@
 <script>
 	import { onMount } from "svelte";
-	import { Mail, CircleX } from "lucide-svelte";
+	import { MailCheck, MailX, CircleX } from "lucide-svelte";
 	let url = $state("");
 	let closed = $state(false);
 	onMount(() => (url = window.location.href));
 	let { form } = $props();
 </script>
 
-{#if !closed && form?.success}
+{#if !closed && form}
 	<div
-		class="top-18 container mx-auto flex w-full justify-between gap-4 text-nowrap bg-green-300 p-4 font-bold text-green-600 xl:px-8"
+		class="top-18 container mx-auto flex w-full justify-between gap-4 text-nowrap p-4 font-bold xl:px-8 {form.success
+			? 'bg-green-200 text-green-500'
+			: 'bg-red-200 text-red-500'}"
 	>
-		<div class="flex justify-center gap-4"><Mail /> Message sent successfully!</div>
+		<div class="flex justify-center gap-4">
+			{#if form.success}
+				<MailCheck /> Message sent successfully!
+			{:else}
+				<MailX /> Something went wrong! Try again.
+			{/if}
+		</div>
 		<button onclick={() => (closed = true)}>
-			<CircleX class="text-red-500" />
+			<CircleX class={form.success ? "text-green-500" : "text-red-500"} />
 		</button>
 	</div>
 {/if}
