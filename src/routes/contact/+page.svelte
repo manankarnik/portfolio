@@ -1,9 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import { MailCheck, MailX, CircleX } from "lucide-svelte";
-	let url = $state("");
 	let closed = $state(false);
-	onMount(() => (url = window.location.href));
 	let { form } = $props();
 </script>
 
@@ -36,8 +34,6 @@
 			<div class="text-lg font-medium text-muted">Or just add to my unread emails?</div>
 		</h2>
 		<form method="post" class="w-full rounded-lg bg-midground p-4 shadow-lg lg:p-8">
-			<input type="hidden" name="subject" value="Portfolio Contact Form" />
-			<input type="hidden" name="redirectTo" value={url} />
 			<label for="name">
 				<div class="font-head text-2xl font-extrabold text-primary xl:text-4xl">
 					## Full Name <span class="text-red-500">*</span>
