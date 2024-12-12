@@ -15,9 +15,9 @@
 	if (browser) {
 		window.addEventListener("scroll", () => {
 			if (window.scrollY > 0) {
-				document.getElementById("header").classList.add("border-b", "border-muted");
+				document.getElementById("header").classList.add("shadow-lg");
 			} else {
-				document.getElementById("header").classList.remove("border-b", "border-muted");
+				document.getElementById("header").classList.remove("shadow-lg");
 			}
 		});
 	}
