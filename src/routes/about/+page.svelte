@@ -1,5 +1,5 @@
 <script>
-	import profile from "$lib/assets/profile.jpeg";
+	import profile from "$lib/assets/profile.jpg";
 </script>
 
 <section class="container mx-auto min-h-[80vh] p-4 lg:p-8">
@@ -10,26 +10,32 @@
 		</div>
 		<div class="w-full lg:p-8">
 			<h2 class="font-head text-xl font-extrabold text-primary lg:text-2xl">## Manan Karnik</h2>
-			<h3 class="font-head text-sm font-bold text-muted lg:text-base">### Software Developer</h3>
+			<h3 class="font-head text-sm font-bold text-muted lg:text-base">
+				### MS in Computer Science, Northeastern University
+			</h3>
 			<p class="pt-4 text-justify">
-				Hello World! I’m a software developer from India with 1.5 years of professional experience
-				as a frontend and software developer. I’ve worked extensively with Vue, Vuetify, and Flutter
-				to create intuitive and efficient applications. In my personal projects, I love building
-				websites using SvelteKit and TailwindCSS, combining simplicity and performance to craft
-				beautiful web experiences.
+				Hello World! I’m a Master’s student in Computer Science at Northeastern University,
+				graduating in May 2027. I work on operating systems and low-level infrastructure, mostly in
+				C and Rust.
 			</p>
 			<p class="pt-4 text-justify">
-				I have a deep interest in graphics programming and love working with Rust to create
-				efficient and elegant solutions. I use Arch Linux (btw) with a custom-configured setup
-				featuring BSPWM as my tiling window manager. My development environment is terminal-focused,
-				where I rely on Neovim for coding, Tmux for session management, and the command line for
-				building and running projects.
+				As a research apprentice with Prof. Gene Cooperman, I helped extend MANA, the lab’s
+				transparent MPI checkpointing system, to NVIDIA’s NCCL, and implemented the drain of
+				in-flight point-to-point messages before a checkpoint. For my Operating Systems
+				Implementation final project, I took egos-2k+, a RISC-V teaching OS, from a single core to
+				16 and added kernel-level threads. I also TA CS3650 Computer Systems, where I explain
+				processes, file descriptors, memory, and pointers to students at the board in office hours.
 			</p>
 			<p class="pt-4 text-justify">
-				In addition to coding, I enjoy creating pixel art in Aseprite and developing games in the
-				Godot Engine, combining my love for programming and art to bring creative projects to life.
-				Whether I’m configuring my OS, crafting immersive games, or exploring new technologies, I’m
-				always excited to build and learn.
+				Before Northeastern, I spent almost two years as a part-time software developer shipping
+				Android apps and web features. In the summer of 2026, I built an internal IoT device
+				emulator at SharkNinja so developers and QA could test the mobile apps without physical
+				hardware.
+			</p>
+			<p class="pt-4 text-justify">
+				Outside of coursework, I run Arch Linux (btw) with Hyprland and live in the terminal with
+				Neovim. I also make games in the Godot Engine and pixel art in Aseprite, and my Rust library
+				bevy_generative brings procedural generation to the Bevy engine.
 			</p>
 		</div>
 	</div>

@@ -40,6 +40,9 @@
                                                                                                                                                      █████                       
                                                                                                                                                     ░░░░░                        
 </pre>
+		<p class="mt-4 text-center text-muted">
+			MS CS at Northeastern. I work on operating systems and low-level infrastructure in C and Rust.
+		</p>
 	</div>
 </section>
 

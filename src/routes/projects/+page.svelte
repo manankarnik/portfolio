@@ -1,89 +1,75 @@
 <script>
-	import { goto } from "$app/navigation";
 	import bevyGenerative from "$lib/assets/bevy-generative.png";
-	import procedra from "$lib/assets/procedra.png";
-	import kanbanxt from "$lib/assets/kanbanxt.png";
-	import votingApp from "$lib/assets/voting-app.png";
-	import ssg from "$lib/assets/ssg.png";
-	import solarSystem from "$lib/assets/solar-system.png";
 
 	const projects = [
 		{
-			title: "Bevy Generative",
-			subtitle: "A Plugin for Procedural Generation",
+			title: "SMP & Kernel Threads for egos-2k+",
+			subtitle: "Independent CS6640 Final Project",
+			highlights: [
+				"Extended egos-2k+, a RISC-V teaching OS, from a single hart to 16. Each hart gets its own boot and trap setup, the trap entry path takes a big kernel lock acquired with amoswap, and idle harts park in wfi.",
+				"Implemented kernel-level threads as process-table entries that share the parent's page table, with per-thread stacks and syscall pages located through the tp register.",
+				"Built a pthreads-style library with create, join, and exit, plus mutexes, semaphores, and condition variables, and measured a contended mutex at 57x the per-increment cost of per-thread counters.",
+				"Debugged multicore races such as a torn 64-bit mtimecmp write that left harts asleep forever, and stress-tested 120,000 threads in one run with an exact final count under QEMU multi-threaded TCG."
+			],
+			buttons: []
+		},
+		{
+			title: "Transparent Checkpoint-Restart",
+			subtitle: "Process Checkpointing for Linux x86-64 (CS5600 Assignment)",
+			highlights: [
+				"Checkpoints unmodified programs through a library loaded with LD_PRELOAD, whose signal handler saves the process's memory regions from /proc/self/maps and its register context to an image file.",
+				"Wrote a static restart program that runs at fixed low addresses on its own stack, so none of its memory collides with the target's mappings, then remaps each saved region with MAP_FIXED and resumes with setcontext.",
+				"Fixed a stack-canary abort on restart by saving and restoring the fs base with arch_prctl, since setcontext does not restore the thread-local storage that holds the canary."
+			],
+			buttons: []
+		},
+		{
+			title: "Bevy Generative & Procedra",
+			subtitle: "Procedural Generation, Native and in the Browser",
 			src: bevyGenerative,
 			highlights: [
-				"A plugin written for the bevy engine that facilitates real-time procedural generation of maps, textures, terrain, and planets.",
-				"Utilizes various noise algorithms such as Perlin and Simplex noise to generate assets variations, offering a highly customizable approach with several tweakable parameters for factors like seed, scale, and offset."
+				"Published an open-source Rust plugin for the Bevy game engine (135+ GitHub stars, 5,900+ crates.io downloads) that bridges the noise crate and Bevy's ECS, exposing 7 noise algorithms and 6 multifractal functions through 20+ parameters to generate textures, terrain meshes, and planets.",
+				"Built Procedra on top of the library, compiling the Rust generators to WebAssembly and embedding them in a SvelteKit app so users generate and preview assets in real time in the browser.",
+				"Added Procedra asset management with authentication, public/private storage in PostgreSQL-compatible CockroachDB through Prisma, likes, clones, and multi-format export."
 			],
 			buttons: [
 				{ text: "Github", href: "https://github.com/manankarnik/bevy_generative" },
 				{ text: "Crates.io", href: "https://crates.io/crates/bevy_generative" },
-				{ text: "Bevy Assets", href: "https://bevyengine.org/assets/#asset-generation" }
-			]
-		},
-		{
-			title: "Procedra",
-			subtitle: "Procedural Assets in Real-Time",
-			src: procedra,
-			highlights: [
-				"A web-based asset generation platform that leverages Bevy Generative to enable real-time generation of assets like textures, maps, terrain, and planets directly in the browser.",
-				"Offers comprehensive asset management features, including asset generation, the ability to store assets as private or public, liking and cloning public assets, as well as editing and exporting them."
-			],
-			buttons: [
-				{ text: "Github", href: "https://github.com/manankarnik/procedra" },
 				{ text: "Live", href: "https://procedra.netlify.app" },
 				{
-					text: "Black Book",
+					text: "Project Report",
 					href: "https://drive.google.com/file/d/1EVUsy2JGASFMLV7FXE_1uqTmSClQrp0X/view"
 				}
 			]
-		},
+		}
+	];
+
+	const otherProjects = [
 		{
 			title: "Kanbanxt",
-			src: kanbanxt,
-			subtitle: "A Kanban Board",
-			highlights: [
-				"A Kanban board web application that allows users to create and manage tasks through cards and containers for efficient task tracking.",
-				"Uses React Beautiful DnD to implement seamless drag-and-drop functionality, enabling users to reorder cards and move them between containers effortlessly."
-			],
-			buttons: [
+			description: "A Kanban board with drag-and-drop cards and containers, built with React.",
+			links: [
 				{ text: "Github", href: "https://github.com/manankarnik/kanbanxt" },
 				{ text: "Live", href: "https://kanbanxt.netlify.app" }
 			]
 		},
 		{
 			title: "Static Site Generator",
-			subtitle: "Markdown File Parser",
-			src: ssg,
-			highlights: [
-				"Automates the creation of web pages, specifically blog posts, by parsing Markdown files and mapping them to dynamically generated routes.",
-				"Automatically extracts key metadata (such as title, summary, date, and image) from Markdown files and displays it on the blog post listing cards."
-			],
-			buttons: [
+			description: "Generates blog routes from Markdown files and their front-matter metadata.",
+			links: [
 				{ text: "Github", href: "https://github.com/manankarnik/static-site-generator" },
 				{ text: "Live", href: "https://cosmos-blog.netlify.app" }
 			]
 		},
 		{
 			title: "Voting App",
-			src: votingApp,
-			subtitle: "An App to Cast Your Vote",
-			highlights: [
-				"A secure voting application that enables users to authenticate via OTP validation and cast votes seamlessly.",
-				"Leverages Firebase and Cloud Firestore for user authentication and database management, ensuring secure and reliable data storage."
-			],
-			buttons: [{ text: "Github", href: "https://github.com/manankarnik/e-voting-app" }]
+			description: "A voting app with OTP authentication, backed by Firebase and Cloud Firestore.",
+			links: [{ text: "Github", href: "https://github.com/manankarnik/e-voting-app" }]
 		},
 		{
 			title: "Solar System",
-			src: solarSystem,
-			subtitle: "An Informational SPA Web App",
-			highlights: [
-				"A multi-route single-page application (SPA) that provides in-depth, interactive content about the planets and the Sun in our solar system.",
-				"Utilizes @google/model-viewer for integrating interactive 3D models, enhancing user engagement and visualization."
-			],
-			buttons: [
+			description: "A single-page app about the planets and the Sun, with interactive 3D models.",
+			links: [
 				{ text: "Github", href: "https://github.com/manankarnik/solar-system" },
 				{ text: "Live", href: "https://manankarnik.github.io/solar-system" }
 			]
@@ -104,11 +90,13 @@
 						<h3 class="font-head text-sm font-bold text-muted lg:text-base">
 							### {project.subtitle}
 						</h3>
-						<img
-							class="contain mx-auto my-4 border border-muted lg:max-h-[320px]"
-							src={project.src}
-							alt={project.title}
-						/>
+						{#if project.src}
+							<img
+								class="contain mx-auto my-4 border border-muted lg:max-h-[320px]"
+								src={project.src}
+								alt={project.title}
+							/>
+						{/if}
 						<ul class="my-4 list-['-_'] text-justify">
 							{#each project.highlights as point}
 								<li class="ml-4 py-2">{point}</li>
@@ -125,6 +113,20 @@
 							</button>
 						{/each}
 					</div>
+				</div>
+			</div>
+		{/each}
+	</div>
+	<h2 class="font-head text-xl font-extrabold text-primary lg:text-2xl">## Other Projects</h2>
+	<div class="my-8 grid gap-4 md:grid-cols-2 xl:gap-8">
+		{#each otherProjects as project}
+			<div class="w-full rounded-lg bg-midground p-4 shadow-lg lg:p-6">
+				<h3 class="font-head font-bold text-primary lg:text-lg">### {project.title}</h3>
+				<p class="py-2">{project.description}</p>
+				<div class="flex gap-4 font-head font-bold">
+					{#each project.links as link}
+						<a class="text-muted hover:text-primary" href={link.href}>[ {link.text} ]</a>
+					{/each}
 				</div>
 			</div>
 		{/each}
