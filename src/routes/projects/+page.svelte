@@ -92,26 +92,26 @@
 </script>
 
 <section class="container mx-auto min-h-[80vh] p-4 lg:p-8">
-	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Projects</h1>
+	<h1 class="font-head text-3xl font-extrabold text-primary lg:text-4xl"># Projects</h1>
 	<div class="my-8 grid gap-4 xl:grid-cols-2 xl:gap-8">
 		{#each projects as project}
-			<div class="w-full rounded-lg bg-midground p-4 shadow-lg lg:p-8">
+			<div class="w-full rounded-lg bg-midground p-4 shadow-lg lg:p-6">
 				<div class="flex h-full flex-col justify-between">
 					<div>
-						<h2 class="font-head text-2xl font-extrabold text-primary xl:text-4xl">
+						<h2 class="font-head text-xl font-extrabold text-primary lg:text-2xl">
 							## {project.title}
 						</h2>
-						<h3 class="text-md font-head font-bold text-muted xl:text-xl">
+						<h3 class="font-head text-sm font-bold text-muted lg:text-base">
 							### {project.subtitle}
 						</h3>
 						<img
-							class="contain mx-auto my-4 border border-muted lg:max-h-[400px]"
+							class="contain mx-auto my-4 border border-muted lg:max-h-[320px]"
 							src={project.src}
 							alt={project.title}
 						/>
 						<ul class="my-4 list-['-_'] text-justify">
 							{#each project.highlights as point}
-								<li class="ml-4 py-2 xl:text-xl">{point}</li>
+								<li class="ml-4 py-2">{point}</li>
 							{/each}
 						</ul>
 					</div>
@@ -119,7 +119,7 @@
 						{#each project.buttons as button}
 							<button
 								on:click={() => (window.location = button.href)}
-								class="block w-full rounded-lg bg-primary py-4 font-semibold text-zinc-200 sm:my-0"
+								class="block w-full rounded-lg bg-primary py-2.5 font-semibold text-zinc-200 sm:my-0"
 							>
 								&lang; {button.text} &rang;
 							</button>

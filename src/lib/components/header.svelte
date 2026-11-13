@@ -25,12 +25,12 @@
 
 <header id="header" class="sticky top-0 w-full bg-background font-head">
 	<div
-		class="container mx-auto flex items-center justify-between gap-8 text-nowrap px-4 py-8 xl:gap-16 xl:px-8"
+		class="container mx-auto flex items-center justify-between gap-8 text-nowrap px-4 py-5 xl:px-8"
 	>
 		<div>
-			<a class="text-3xl font-bold text-primary" href="/">[ Portfolio ]</a>
+			<a class="text-2xl font-bold text-primary" href="/">[ Portfolio ]</a>
 		</div>
-		<div class="hidden items-center gap-4 text-lg lg:flex xl:gap-10">
+		<div class="hidden items-center gap-4 lg:flex xl:gap-8">
 			{#each links as link}
 				<a
 					class={"font-bold" + ($page.url.pathname == link.href ? " text-primary" : "")}

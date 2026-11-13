@@ -23,21 +23,21 @@
 </script>
 
 <section class="container mx-auto min-h-[80vh] p-4 lg:p-8">
-	<h1 class="font-head text-4xl font-extrabold text-primary xl:text-6xl"># Work Experience</h1>
+	<h1 class="font-head text-3xl font-extrabold text-primary lg:text-4xl"># Work Experience</h1>
 	<div class="my-8 w-full">
 		{#each works as work}
-			<div class="my-8 w-full rounded-lg bg-midground p-4 shadow-lg lg:p-8">
+			<div class="my-8 w-full rounded-lg bg-midground p-4 shadow-lg lg:p-6">
 				<div class="flex h-full flex-col justify-between">
 					<div>
-						<h2 class="font-head text-2xl font-extrabold text-primary xl:text-4xl">
+						<h2 class="font-head text-xl font-extrabold text-primary lg:text-2xl">
 							## {work.title}
 						</h2>
-						<h3 class="text-md font-head font-bold text-muted xl:text-xl">
+						<h3 class="font-head text-sm font-bold text-muted lg:text-base">
 							### {work.subtitle}
 						</h3>
 						<ul class="mt-4 list-['-_'] text-justify">
 							{#each work.highlights as point}
-								<li class="ml-4 py-2 xl:text-xl">{point}</li>
+								<li class="ml-4 py-2">{point}</li>
 							{/each}
 						</ul>
 					</div>
@@ -45,7 +45,7 @@
 						{#each work.buttons as button}
 							<button
 								on:click={() => (window.location = button.href)}
-								class="w-full rounded-lg bg-primary p-4 font-semibold text-zinc-200"
+								class="w-full rounded-lg bg-primary px-4 py-2.5 font-semibold text-zinc-200"
 							>
 								&lang; {button.text} &rang;
 							</button>
