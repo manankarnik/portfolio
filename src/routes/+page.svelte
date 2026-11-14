@@ -2,14 +2,16 @@
 	import { enhance } from "$app/forms";
 	import profile from "$lib/assets/profile.jpg";
 	import Terminal from "$lib/components/terminal.svelte";
-	import { education, experience, projects, otherProjects, skills } from "$lib/content.js";
+	import {
+		education,
+		experience,
+		projects,
+		otherProjects,
+		skills,
+		socials
+	} from "$lib/content.js";
 
 	let { form } = $props();
-
-	const socials = [
-		{ text: "GitHub", href: "https://github.com/manankarnik" },
-		{ text: "LinkedIn", href: "https://linkedin.com/in/manankarnik" }
-	];
 </script>
 
 {#snippet code(text)}
@@ -54,23 +56,45 @@
 				<p class="text-sm font-bold text-primary md:pt-1">{project.highlight}</p>
 			{/if}
 		</div>
-		<p class="leading-relaxed">{@render code(project.summary)}</p>
-		{@render tags(project.tags)}
-		<div class="space-y-4">
-			{@render details(project.details)}
-			{#if project.links.length}
-				<div class="flex flex-wrap gap-x-4 gap-y-1 font-bold">
-					{#each project.links as link}
-						<a
-							class="text-primary transition-colors hover:text-primary-hover"
-							href={link.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							>{link.text}<span aria-hidden="true" class="ml-0.5">↗</span></a
-						>
-					{/each}
-				</div>
+		<div class="grid items-start gap-6 {project.media ? 'md:grid-cols-[1fr_16rem]' : ''}">
+			{#if project.media}
+				<!-- Beside the text on desktop, under the title on phones -->
+				<figure class="max-w-sm md:order-last">
+					{#if project.media.type == "video"}
+						<video
+							class="w-full {project.media.blend
+								? 'mix-blend-multiply invert dark:mix-blend-screen dark:invert-0'
+								: ''}"
+							src={project.media.src}
+							aria-label={project.media.alt}
+							autoplay
+							muted
+							loop
+							playsinline
+						></video>
+					{:else}
+						<img class="w-full" src={project.media.src} alt={project.media.alt} loading="lazy" />
+					{/if}
+				</figure>
 			{/if}
+			<div class="space-y-4">
+				<p class="leading-relaxed">{@render code(project.summary)}</p>
+				{@render tags(project.tags)}
+				{@render details(project.details)}
+				{#if project.links.length}
+					<div class="flex flex-wrap gap-x-4 gap-y-1 font-bold">
+						{#each project.links as link}
+							<a
+								class="text-primary transition-colors hover:text-primary-hover"
+								href={link.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								>{link.text}<span aria-hidden="true" class="ml-0.5">↗</span></a
+							>
+						{/each}
+					</div>
+				{/if}
+			</div>
 		</div>
 	</article>
 {/snippet}
@@ -310,29 +334,6 @@
 		</div>
 	</section>
 </main>
-
-<footer class="container mx-auto max-w-6xl px-4 pb-12 text-sm">
-	<div
-		class="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border border-line px-5 py-3"
-	>
-		<span class="text-muted"><span class="text-primary">$</span> © 2026 Manan Karnik</span>
-		<nav class="flex flex-wrap gap-x-5 gap-y-1 font-bold">
-			{#each socials as link}
-				<a
-					class="text-primary transition-colors hover:text-primary-hover"
-					href={link.href}
-					target="_blank"
-					rel="noopener noreferrer">{link.text}<span aria-hidden="true" class="ml-0.5">↗</span></a
-				>
-			{/each}
-			<a
-				class="text-primary transition-colors hover:text-primary-hover"
-				href="mailto:karnik.ma@northeastern.edu">Email</a
-			>
-			<a class="text-primary transition-colors hover:text-primary-hover" href="#top">cd ~ ↑</a>
-		</nav>
-	</div>
-</footer>
 
 <style>
 	pre {

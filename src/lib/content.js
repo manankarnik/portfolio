@@ -1,4 +1,14 @@
 // Content for the single-page site, rendered in src/routes/+page.svelte.
+import dodgeBash from "$lib/assets/dodge-bash.png";
+import procedra from "$lib/assets/procedra.webm";
+import cellabrate from "$lib/assets/cellabrate.webm";
+import kanbanxt from "$lib/assets/kanbanxt.webp";
+import ssg from "$lib/assets/ssg.webp";
+
+export const socials = [
+	{ text: "GitHub", href: "https://github.com/manankarnik" },
+	{ text: "LinkedIn", href: "https://linkedin.com/in/manankarnik" }
+];
 
 export const experience = [
 	{
@@ -114,6 +124,11 @@ export const projects = [
 		tags: ["Rust", "Bevy", "WebAssembly", "SvelteKit", "TypeScript", "Prisma", "CockroachDB"],
 		highlight: "135+ stars · 5,900+ downloads",
 		subtitle: "Procedural Generation, Native and in the Browser",
+		media: {
+			type: "video",
+			src: procedra,
+			alt: "A terrain mesh generated with bevy_generative"
+		},
 		details: [
 			"Published an open-source Rust plugin for the Bevy game engine (135+ GitHub stars, 5,900+ crates.io downloads) that bridges the `noise` crate and Bevy's ECS, exposing 7 noise algorithms and 6 multifractal functions through 20+ parameters to generate textures, terrain meshes, and planets.",
 			"Built Procedra on top of the library, compiling the Rust generators to WebAssembly and embedding them in a SvelteKit app so users generate and preview assets in real time in the browser.",
@@ -156,6 +171,13 @@ export const otherProjects = [
 			"An interactive editor and simulator for Conway's Game of Life that runs entirely in the terminal.",
 		tags: ["Go", "tcell", "TUI"],
 		highlight: "Vim-inspired controls",
+		media: {
+			type: "video",
+			src: cellabrate,
+			alt: "A Gosper glider gun running in Cellabrate, firing gliders across the terminal",
+			// White-on-black terminal capture; blended into the page so only the cells show
+			blend: true
+		},
 		details: [
 			"Simulates the cellular automaton in real time while letting you create and edit patterns with a cursor.",
 			"Uses Vim-inspired keyboard navigation, with paint and erase modes for drawing patterns quickly.",
@@ -172,6 +194,11 @@ export const otherProjects = [
 			"A fast-paced survival game where you dodge triangles, then grab a shield and smash into them for extra points.",
 		tags: ["Godot", "GDScript"],
 		highlight: "Taught to 30+ students in a workshop",
+		media: {
+			type: "image",
+			src: dodgeBash,
+			alt: "The player square dodging red triangles in Dodge Bash"
+		},
 		details: [
 			"Built in the Godot Engine with GDScript and published on itch.io.",
 			"Taught a hands-on Godot workshop where 30+ computer science students built the game from scratch, covering game loops, collision detection, and player mechanics."
@@ -189,6 +216,11 @@ export const otherProjects = [
 			"Turns a folder of Markdown posts into a blog that runs in the browser as a WebAssembly app.",
 		tags: ["Rust", "Yew", "WebAssembly"],
 		highlight: "Posts embedded at compile time",
+		media: {
+			type: "image",
+			src: ssg,
+			alt: "A demo blog built with the static site generator, showing post cards"
+		},
 		details: [
 			"Parses Markdown posts with `pulldown-cmark` and maps each one to a dynamically generated route with `yew-router`.",
 			"Extracts front-matter metadata such as title, summary, date, and image with `gray_matter`, and shows it on the post listing cards.",
@@ -206,6 +238,11 @@ export const otherProjects = [
 		summary: "A Kanban board for organizing tasks into cards and containers.",
 		highlight: "Live search across every column",
 		tags: ["Next.js", "React", "TypeScript"],
+		media: {
+			type: "image",
+			src: kanbanxt,
+			alt: "A Kanbanxt board with five columns of task cards"
+		},
 		details: [
 			"Lets users create and manage tasks through cards and containers for efficient task tracking.",
 			"Uses React Beautiful DnD for drag-and-drop, so cards can be reordered and moved between containers.",
