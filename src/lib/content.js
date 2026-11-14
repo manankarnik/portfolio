@@ -149,7 +149,7 @@ export const projects = [
 export const otherProjects = [
 	{
 		slug: "daub",
-		title: "daub",
+		title: "Daub",
 		subtitle: "Color Scheme Manager for Linux Desktops",
 		summary:
 			"Applies and switches color schemes in real time across a Linux desktop, from themes defined in TOML.",
