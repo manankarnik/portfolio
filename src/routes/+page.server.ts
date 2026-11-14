@@ -6,6 +6,8 @@ export const actions = {
 		const urlEncoded = new URLSearchParams(await request.formData());
 		urlEncoded.append("accessKey", ACCESS_KEY);
 		urlEncoded.append("subject", "Portfolio Contact Form");
+		// "@" tells Static Forms to use the submitted email as the reply-to address
+		urlEncoded.append("replyTo", "@");
 		try {
 			// A URLSearchParams body makes fetch send application/x-www-form-urlencoded
 			const response = await fetch("https://api.staticforms.xyz/submit", {
