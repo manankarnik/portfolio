@@ -5,19 +5,35 @@
 	import { ModeWatcher } from "mode-watcher";
 
 	let { children } = $props();
+	const description =
+		"MS CS at Northeastern University, exploring how software really works, from operating systems to compilers and programming languages.";
 </script>
 
 <svelte:head>
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-		rel="stylesheet"
+		rel="preload"
+		href="/fonts/code-new-roman-regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="/fonts/code-new-roman-bold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
 	/>
 	<title>Manan Karnik</title>
+	<meta name="description" content={description} />
+	<!-- Shown when the link is shared on LinkedIn, Slack, email, etc. -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Manan Karnik" />
+	<meta property="og:description" content={description} />
+	<meta name="twitter:card" content="summary" />
 </svelte:head>
 
-<ModeWatcher />
+<ModeWatcher defaultMode="light" />
 <Header />
 {@render children()}
 <Footer />

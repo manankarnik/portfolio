@@ -8,7 +8,7 @@
 	class="flex gap-2 p-2 {props.class}"
 	on:click={() => {
 		toggleMode();
-		props.onclick();
+		props.onclick?.();
 	}}
 >
 	{#if $mode == "dark"}

@@ -2,11 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Code New Roman by Sam Radian (SIL OFL 1.1), subset to Latin, punctuation, arrows, and blocks */
+@font-face {
+	font-family: "Code New Roman";
+	font-weight: 400;
+	font-display: swap;
+	src: url("/fonts/code-new-roman-regular.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Code New Roman";
+	font-weight: 700;
+	font-display: swap;
+	src: url("/fonts/code-new-roman-bold.woff2") format("woff2");
+}
+
 @layer base {
 	html {
 		background: theme("colors.background");
 		color: theme("colors.foreground");
 		font-family: theme("fontFamily.body");
+		/* ss08 is Code New Roman's dotted zero */
+		font-feature-settings: "ss08";
+		scroll-behavior: smooth;
 	}
 	* {
 		@apply focus-visible:outline;

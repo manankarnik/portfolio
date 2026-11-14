@@ -7,13 +7,16 @@ export const actions = {
 		urlEncoded.append("accessKey", ACCESS_KEY);
 		urlEncoded.append("subject", "Portfolio Contact Form");
 		try {
+			// A URLSearchParams body makes fetch send application/x-www-form-urlencoded
 			const response = await fetch("https://api.staticforms.xyz/submit", {
 				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-url-formencoded"
-				},
 				body: urlEncoded
 			});
+			const result = await response.json().catch(() => null);
+			if (!response.ok || result?.success === false) {
+				console.log(`staticforms responded ${response.status}:`, result);
+				return { success: false };
+			}
 			return { success: true };
 		} catch (e) {
 			console.log(e);

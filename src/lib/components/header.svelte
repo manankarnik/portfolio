@@ -1,84 +1,100 @@
 <script>
-	import { goto } from "$app/navigation";
-	import { page } from "$app/stores";
-	import { browser } from "$app/environment";
-	import { Menu, CircleX } from "lucide-svelte";
+	import { onMount } from "svelte";
+	import { Menu, X } from "lucide-svelte";
 	import DarkModeToggle from "$lib/components/dark-mode-toggle.svelte";
-	let links = [
-		{ href: "/about", text: "About Me", hovered: false },
-		{ href: "/projects", text: "Projects", hovered: false },
-		{ href: "/work", text: "Work Experience", hovered: false },
-		{ href: "/contact", text: "Contact Me", hovered: false }
-	];
-	let open = false;
 
-	if (browser) {
-		window.addEventListener("scroll", () => {
-			if (window.scrollY > 0) {
-				document.getElementById("header").classList.add("shadow-lg");
-			} else {
-				document.getElementById("header").classList.remove("shadow-lg");
-			}
-		});
+	const links = ["about", "education", "experience", "projects", "skills", "archive", "contact"];
+	let open = $state(false);
+	let scrolled = $state(false);
+	let active = $state("");
+
+	onMount(() => {
+		const onScroll = () => (scrolled = window.scrollY > 0);
+		onScroll();
+		window.addEventListener("scroll", onScroll, { passive: true });
+
+		// Highlight the section that crosses the upper middle of the viewport
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) active = entry.target.id;
+				}
+			},
+			{ rootMargin: "-35% 0px -60% 0px" }
+		);
+		for (const id of links) {
+			const section = document.getElementById(id);
+			if (section) observer.observe(section);
+		}
+		return () => {
+			window.removeEventListener("scroll", onScroll);
+			observer.disconnect();
+		};
+	});
+
+	function top(event) {
+		if (window.location.pathname == "/") {
+			event.preventDefault();
+			history.replaceState(null, "", "/");
+			window.scrollTo({ top: 0, behavior: "smooth" });
+			active = "";
+		}
 	}
 </script>
 
-<header id="header" class="sticky top-0 w-full bg-background font-head">
-	<div
-		class="container mx-auto flex items-center justify-between gap-8 text-nowrap px-4 py-5 xl:px-8"
-	>
-		<div>
-			<a class="text-2xl font-bold text-primary" href="/">[ Portfolio ]</a>
-		</div>
-		<div class="hidden items-center gap-4 lg:flex xl:gap-8">
-			{#each links as link}
-				<a
-					class={"font-bold" + ($page.url.pathname == link.href ? " text-primary" : "")}
-					href={link.href}
-					on:mouseover={() => (link.hovered = true)}
-					on:focus={() => (link.hovered = true)}
-					on:mouseout={() => (link.hovered = false)}
-					on:blur={() => (link.hovered = false)}
-				>
-					[<span class:invisible={$page.url.pathname != link.href && !link.hovered}>■</span>]
-					{link.text}
-				</a>
-			{/each}
-		</div>
-		<div class="flex items-center justify-center gap-2">
-			<DarkModeToggle class="hidden sm:block" />
-			<button on:click={() => (open = true)}>
-				<Menu class="block lg:hidden" />
+<header
+	class="sticky top-0 z-10 w-full border-b bg-background font-head transition-colors {scrolled
+		? 'border-line'
+		: 'border-transparent'}"
+>
+	<div class="container mx-auto flex max-w-6xl items-center justify-between gap-8 px-4 py-4">
+		<a class="font-bold" href="/" onclick={top}>
+			<span class="text-primary">$</span> manan karnik
+		</a>
+		<div class="flex items-center gap-6">
+			<nav class="hidden items-center gap-5 text-sm font-bold lg:flex">
+				{#each links as link}
+					<a
+						class="transition-colors hover:text-primary {active == link
+							? 'text-primary'
+							: 'text-muted'}"
+						href="/#{link}">./{link}</a
+					>
+				{/each}
+			</nav>
+			<DarkModeToggle class="hidden sm:flex" />
+			<button class="p-2 lg:hidden" aria-label="Open menu" onclick={() => (open = true)}>
+				<Menu />
 			</button>
 		</div>
 	</div>
 </header>
+
 {#if open}
 	<div
 		aria-hidden="true"
-		on:click={() => (open = false)}
-		class="fixed bottom-0 left-0 right-0 top-0 backdrop-blur"
+		onclick={() => (open = false)}
+		class="fixed inset-0 z-20 backdrop-blur-sm"
 	></div>
 {/if}
 <div
-	class={`fixed bottom-0 right-0 top-0 w-80 bg-background p-4 font-head transition-transform duration-100 ${
-		open ? "translate-x-0" : "translate-x-full"
-	}`}
+	class="fixed bottom-0 right-0 top-0 z-30 w-72 border-l border-line bg-background p-4 font-head transition-transform duration-150 {open
+		? 'translate-x-0'
+		: 'translate-x-full'}"
 >
-	<div class="flex justify-end p-4">
-		<button on:click={(open = false)}>
-			<CircleX />
+	<div class="flex justify-end">
+		<button class="p-2" aria-label="Close menu" onclick={() => (open = false)}>
+			<X />
 		</button>
 	</div>
-	{#each links as link}
-		<a
-			class={"flex gap-2 p-4 font-bold" + ($page.url.pathname == link.href ? " text-primary" : "")}
-			href={link.href}
-			on:click={() => (open = false)}
-		>
-			<div>[<span class:invisible={$page.url.pathname != link.href && !link.hovered}>■</span>]</div>
-			<div>{link.text}</div>
-		</a>
-	{/each}
+	<nav class="mt-4 flex flex-col">
+		{#each links as link}
+			<a
+				class="p-4 font-bold {active == link ? 'text-primary' : ''}"
+				href="/#{link}"
+				onclick={() => (open = false)}>./{link}</a
+			>
+		{/each}
+	</nav>
 	<DarkModeToggle onclick={() => (open = false)} class="w-full p-4 font-bold" label={true} />
 </div>
