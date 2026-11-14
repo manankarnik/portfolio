@@ -77,7 +77,9 @@
 		class="fixed inset-0 z-20 backdrop-blur-sm"
 	></div>
 {/if}
+<!-- inert while closed, so the off-screen menu isn't reachable with Tab or screen readers -->
 <div
+	inert={!open}
 	class="fixed bottom-0 right-0 top-0 z-30 w-72 border-l border-line bg-background p-4 font-head transition-transform duration-150 {open
 		? 'translate-x-0'
 		: 'translate-x-full'}"
