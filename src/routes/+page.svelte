@@ -12,6 +12,27 @@
 	} from "$lib/content.js";
 
 	let { form } = $props();
+
+	// ASCII banner; each █ run becomes a rectangle in an SVG path
+	const banner = [
+		" ██████   ██████                                              █████   ████                                 ███  █████",
+		"  ██████ ██████                                                ███   ███                                         ███",
+		"  ███ █████ ███   ██████   ████████    ██████   ████████       ███  ███     ██████   ████████  ████████   ████   ███ █████",
+		"  ███  ███  ███       ███   ███  ███       ███   ███  ███      ███████          ███   ███  ███  ███  ███   ███   ███  ███",
+		"  ███       ███   ███████   ███  ███   ███████   ███  ███      ███  ███     ███████   ███       ███  ███   ███   ██████",
+		"  ███       ███  ███  ███   ███  ███  ███  ███   ███  ███      ███   ███   ███  ███   ███       ███  ███   ███   ███  ███",
+		" █████     █████  ████████ ████ █████  ████████ ████ █████    █████   ████  ████████ █████     ████ █████ █████ ████ █████"
+	];
+	const cell = 0.6; // width of a monospace character relative to its line height
+	const bannerWidth = Math.max(...banner.map((line) => line.length)) * cell;
+	// Rows overlap slightly so no hairline seams show between them
+	const bannerPath = banner
+		.flatMap((line, y) =>
+			[...line.matchAll(/█+/g)].map(
+				(run) => `M${run.index * cell} ${y}h${run[0].length * cell}v1.02h${-run[0].length * cell}z`
+			)
+		)
+		.join("");
 </script>
 
 {#snippet code(text)}
@@ -102,18 +123,14 @@
 <main class="container mx-auto max-w-6xl px-4">
 	<section class="flex min-h-[calc(100svh-4.5rem)] flex-col justify-center py-16">
 		<h1 class="sr-only">Manan Karnik</h1>
-		<pre
+		<!-- Drawn as SVG rather than text so it doesn't depend on the device's monospace font -->
+		<svg
 			aria-hidden="true"
-			class="overflow-hidden text-[3px] leading-none text-primary sm:text-[5px] md:text-[8px] lg:text-[13px] xl:text-[15px]">
- ██████   ██████                                              █████   ████                                 ███  █████     
-  ██████ ██████                                                ███   ███                                         ███      
-  ███ █████ ███   ██████   ████████    ██████   ████████       ███  ███     ██████   ████████  ████████   ████   ███ █████
-  ███  ███  ███       ███   ███  ███       ███   ███  ███      ███████          ███   ███  ███  ███  ███   ███   ███  ███ 
-  ███       ███   ███████   ███  ███   ███████   ███  ███      ███  ███     ███████   ███       ███  ███   ███   ██████   
-  ███       ███  ███  ███   ███  ███  ███  ███   ███  ███      ███   ███   ███  ███   ███       ███  ███   ███   ███  ███ 
- █████     █████  ████████ ████ █████  ████████ ████ █████    █████   ████  ████████ █████     ████ █████ █████ ████ █████
-                                                                                                                         
-</pre>
+			class="w-full fill-current text-primary"
+			viewBox="0 0 {bannerWidth} {banner.length}"
+		>
+			<path d={bannerPath} />
+		</svg>
 		<div class="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_1.35fr]">
 			<div>
 				<p class="text-lg leading-relaxed">
@@ -174,7 +191,7 @@
 					When I have the time, I watch anime.
 				</p>
 			</div>
-			<img class="w-48 border border-line md:w-64" src={profile} alt="Manan Karnik" />
+			<img class="mx-auto w-48 border border-line md:mx-0 md:w-64" src={profile} alt="Manan Karnik" />
 		</div>
 	</section>
 
@@ -334,9 +351,3 @@
 		</div>
 	</section>
 </main>
-
-<style>
-	pre {
-		font-family: monospace;
-	}
-</style>
